@@ -2,11 +2,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using SistemaVendas.Data;
 var builder = WebApplication.CreateBuilder(args);
-builder.Services.AddDbContext<SistemaVendasContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("SistemaVendasContext") ?? throw new InvalidOperationException("Connection string 'SistemaVendasContext' not found.")));
+//    options.UseSqlServer(builder.Configuration.GetConnectionString("SistemaVendasContext") ?? throw new InvalidOperationException("Connection string 'SistemaVendasContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<SistemaVendasContext>
+    (options => options.UseSqlServer("Data Source=DESKTOP-HOID127;Initial Catalog=Empresa;Integrated Security=True"));
 
 var app = builder.Build();
 
